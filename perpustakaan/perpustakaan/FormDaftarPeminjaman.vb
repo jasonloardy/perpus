@@ -6,7 +6,13 @@ Public Class FormDaftarPeminjaman
         isigrid()
     End Sub
     Sub isigrid()
-        Dim query As String = "SELECT tp.tanggal,tp.kd_peminjaman,ta.kd_anggota,ta.nama,ta.alamat,ta.no_telp,ta.role FROM tb_peminjaman tp " _
+        Dim query As String = "SELECT tp.tanggal,tp.kd_peminjaman,ta.kd_anggota,ta.nama,ta.alamat,ta.no_telp," _
+                            & "CASE " _
+                            & "WHEN ta.role = 'D' then 'Dosen' " _
+                            & "WHEN ta.role = 'M' then 'Mahasiswa' " _
+                            & "WHEN ta.role = 'P' then 'Pustakawan' " _
+                            & "END AS role " _
+                            & "FROM tb_peminjaman tp " _
                             & "JOIN tb_anggota ta ON tp.kd_anggota=ta.kd_anggota " _
                             & "JOIN tb_peminjaman_detail tpd ON tp.kd_peminjaman=tpd.kd_peminjaman " _
                             & "WHERE tpd.status='0'" _

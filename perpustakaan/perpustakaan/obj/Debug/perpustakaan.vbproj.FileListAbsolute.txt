@@ -17,3 +17,4 @@ C:\Users\Jason\Documents\GitHub\perpustakaan\perpustakaan\perpustakaan\obj\Debug
 C:\Users\Jason\Documents\GitHub\perpustakaan\perpustakaan\perpustakaan\obj\Debug\perpustakaan.FormDaftarPeminjaman.resources
 C:\Users\Jason\Documents\GitHub\perpustakaan\perpustakaan\perpustakaan\obj\Debug\perpustakaan.FormPengembalian.resources
 C:\Users\Jason\Documents\GitHub\perpustakaan\perpustakaan\perpustakaan\obj\Debug\perpustakaan.FormDaftarBukuPeminjaman.resources
+C:\Users\Jason\Documents\GitHub\perpustakaan\perpustakaan\perpustakaan\obj\Debug\perpustakaan.CRViewer.resources

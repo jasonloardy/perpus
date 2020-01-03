@@ -120,13 +120,18 @@ Public Class FormPeminjaman
         End Try
     End Sub
     Sub simpanpeminjaman()
-        Dim simpandetail As String = "INSERT INTO tb_peminjaman_detail (kd_peminjaman, kd_buku, tgl_kembali) " _
-                                        & "SELECT '" & tbkdpeminjaman.Text & "', kd_buku, tgl_kembali FROM tb_keranjang"
+        Dim simpandetail As String = "INSERT INTO tb_peminjaman_detail (kd_peminjaman, kd_buku, tgl_kembali, status) " _
+                                        & "SELECT '" & tbkdpeminjaman.Text & "', kd_buku, tgl_kembali, '0' FROM tb_keranjang"
         Query(simpandetail)
         Dim simpan As String = "INSERT INTO tb_peminjaman " _
                             & "VALUES ('" & tbkdpeminjaman.Text & "', '" & Format(dtppinjaman.Value, "yyyy-MM-dd") & "', '" & tbkdanggota.Text & "')"
         Query(simpan)
-        MsgBox("Peminjaman berhasil!")
+        Dim nplh As Integer
+        nplh = MsgBox("Peminjaman berhasil. Cetak bukti peminjaman?", 48 + 4 + 256, "Konfirmasi")
+        If nplh = 6 Then
+            CRViewer.peminjaman(tbkdpeminjaman.Text)
+            CRViewer.ShowDialog()
+        End If
     End Sub
 
     Private Sub btnsimpan_Click(sender As Object, e As EventArgs) Handles btnsimpan.Click

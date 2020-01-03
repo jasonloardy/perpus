@@ -27,4 +27,14 @@
     Private Sub PengembalianToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles PengembalianToolStripMenuItem.Click
         FormPengembalian.ShowDialog()
     End Sub
+
+    Private Sub DaftarPeminjamanToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles DaftarPeminjamanToolStripMenuItem.Click
+        CRViewer.lappeminjaman()
+        CRViewer.ShowDialog()
+    End Sub
+
+    Private Sub DaftarPengembalianToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles DaftarPengembalianToolStripMenuItem.Click
+        CRViewer.lappengembalian()
+        CRViewer.ShowDialog()
+    End Sub
 End Class

@@ -11,7 +11,7 @@ Public Class FormPengembalian
         FormDaftarBukuPeminjaman.ShowDialog()
     End Sub
     Sub isigrid()
-        Dim query As String = "SELECT * FROM tb_keranjang ORDER BY no DESC"
+        Dim query As String = "SELECT * FROM tb_keranjang_pengembalian ORDER BY no DESC"
         Dim da As New MySqlDataAdapter(query, konek)
         Dim ds As New DataSet()
         If da.Fill(ds) Then
@@ -33,30 +33,34 @@ Public Class FormPengembalian
         dgv.Columns(1).Width = 100
         dgv.Columns(2).HeaderText = "Judul Buku"
         dgv.Columns(2).AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill
-        dgv.Columns(3).Visible = False
+        dgv.Columns(3).HeaderText = "Jumlah Hari"
+        dgv.Columns(3).Width = 100
         objAlternatingCellStyle.BackColor = Color.AliceBlue
         dgv.SelectionMode = DataGridViewSelectionMode.FullRowSelect
         dgv.ReadOnly = True
         dgv.AllowUserToAddRows = False
     End Sub
     Sub querytambah()
-        Dim q As String = "INSERT INTO tb_keranjang (kd_buku,judul,tgl_kembali) VALUES (@kd_buku, @judul, @tgl_kembali)"
-        Querykeranjang(q, tbkdbuku.Text, tbjudulbuku.Text.ToUpper, Format(dtpkembali.Value, "yyyy-MM-dd"))
+        Dim q As String = "INSERT INTO tb_keranjang_pengembalian (kd_buku,judul,jmlhari) VALUES (@kd_buku, @judul, @jmlhari)"
+        Querykeranjangpengembalian(q, tbkdbuku.Text, tbjudulbuku.Text.ToUpper, tbjmlhari.Text)
         isigrid()
     End Sub
     Private Sub btninput_Click(sender As Object, e As EventArgs) Handles btninput.Click
         querytambah()
+        tbkdbuku.Clear()
+        tbjudulbuku.Clear()
+        tbjmlhari.Clear()
     End Sub
     Sub kode()
-        cmd = New MySqlCommand("SELECT kd_peminjaman FROM tb_peminjaman ORDER BY kd_peminjaman DESC LIMIT 1", konek)
+        cmd = New MySqlCommand("SELECT kd_pengembalian FROM tb_pengembalian ORDER BY kd_pengembalian DESC LIMIT 1", konek)
         dr = cmd.ExecuteReader
         dr.Read()
         Dim currentdate As DateTime = DateTime.Now
-        Dim kd As String = "PJM" & currentdate.ToString("yyMM")
+        Dim kd As String = "KBL" & currentdate.ToString("yyMM")
         If Not dr.HasRows Then
             tbkdpengembalian.Text = kd & "000001"
         Else
-            Dim hitung As String = Val(Microsoft.VisualBasic.Right(dr.Item("kd_peminjaman").ToString, 6)) + 1
+            Dim hitung As String = Val(Microsoft.VisualBasic.Right(dr.Item("kd_pengembalian").ToString, 6)) + 1
             If Len(hitung) = 1 Then
                 tbkdpengembalian.Text = kd & "00000" & hitung
             ElseIf Len(hitung) = 2 Then
@@ -74,7 +78,7 @@ Public Class FormPengembalian
         dr.Close()
     End Sub
     Sub resetkeranjang()
-        Dim q As String = "TRUNCATE TABLE tb_keranjang"
+        Dim q As String = "TRUNCATE TABLE tb_keranjang_pengembalian"
         Query(q)
     End Sub
     Sub reset()
@@ -86,6 +90,7 @@ Public Class FormPengembalian
         tbrole.Clear()
         tbkdbuku.Clear()
         tbjudulbuku.Clear()
+        tbjmlhari.Clear()
         resetkeranjang()
         isigrid()
     End Sub
@@ -109,7 +114,7 @@ Public Class FormPengembalian
             Dim nhps As Integer
             nhps = MsgBox("Hapus buku " & nmbrg & " (" & kdbrg & ") dari keranjang?", 48 + 4 + 256, "Konfirmasi")
             If nhps = 6 Then
-                Dim queryhps As String = "DELETE FROM tb_keranjang WHERE no = " & no
+                Dim queryhps As String = "DELETE FROM tb_keranjang_pengembalian WHERE no = " & no
                 Query(queryhps)
                 isigrid()
             End If
@@ -118,25 +123,35 @@ Public Class FormPengembalian
         End Try
     End Sub
     Sub simpanpengembalian()
-        Dim simpandetail As String = "INSERT INTO tb_peminjaman_detail (kd_peminjaman, kd_buku, tgl_kembali) " _
-                                        & "SELECT '" & tbkdpengembalian.Text & "', kd_buku, tgl_kembali FROM tb_keranjang"
+        Dim simpandetail As String = "INSERT INTO tb_pengembalian_detail (kd_pengembalian, kd_buku) " _
+                                        & "SELECT '" & tbkdpengembalian.Text & "', kd_buku FROM tb_keranjang_pengembalian"
         Query(simpandetail)
-        Dim simpan As String = "INSERT INTO tb_peminjaman " _
-                            & "VALUES ('" & tbkdpengembalian.Text & "', '" & Format(dtpkembali.Value, "yyyy-MM-dd") & "', '" & tbkdanggota.Text & "')"
+        For Each row As DataGridViewRow In dgv.Rows
+            Dim kd_buku As String = row.Cells(1).Value.ToString
+            Dim updatebuku As String = "UPDATE tb_peminjaman_detail SET status = '1' " _
+                                     & "WHERE kd_peminjaman = '" & tbkdpeminjaman.Text & "' AND kd_buku = '" & kd_buku & "'"
+            Query(updatebuku)
+        Next
+        Dim simpan As String = "INSERT INTO tb_pengembalian " _
+                            & "VALUES ('" & tbkdpengembalian.Text & "', '" & Format(dtpkembali.Value, "yyyy-MM-dd") & "', '" & tbkdpeminjaman.Text & "')"
         Query(simpan)
-        MsgBox("Peminjaman berhasil!")
+        Dim nplh As Integer
+        nplh = MsgBox("Pengembalian berhasil. Cetak bukti pengembalian?", 48 + 4 + 256, "Konfirmasi")
+        If nplh = 6 Then
+            CRViewer.pengembalian(tbkdpengembalian.Text)
+            CRViewer.ShowDialog()
+        End If
     End Sub
 
     Private Sub btnsimpan_Click(sender As Object, e As EventArgs) Handles btnsimpan.Click
         Dim nplh As Integer
-        nplh = MsgBox("Simpan peminjaman?", 48 + 4 + 256, "Konfirmasi")
+        nplh = MsgBox("Simpan pengembalian?", 48 + 4 + 256, "Konfirmasi")
         If nplh = 6 Then
-            If tbkdanggota.Text = "" Then
-                MsgBox("Masukkan data anggota!", 16, "Perhatian")
-            ElseIf dgv.RowCount = 0 Then
+            If dgv.RowCount = 0 Then
                 MsgBox("Data buku masih kosong!", 16, "Perhatian")
             Else
-                'simpanpeminjaman()
+                simpanpengembalian()
+                tbkdpeminjaman.Clear()
                 reset()
             End If
         End If
@@ -144,5 +159,9 @@ Public Class FormPengembalian
 
     Private Sub Button1_Click(sender As Object, e As EventArgs) Handles Button1.Click
         FormDaftarPeminjaman.ShowDialog()
+    End Sub
+
+    Private Sub tbkdpeminjaman_TextChanged(sender As Object, e As EventArgs) Handles tbkdpeminjaman.TextChanged
+        reset()
     End Sub
 End Class

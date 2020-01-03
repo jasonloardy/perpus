@@ -24,6 +24,9 @@ Partial Class FormPengembalian
     Private Sub InitializeComponent()
         Me.tbkdanggota = New System.Windows.Forms.TextBox()
         Me.GroupBox1 = New System.Windows.Forms.GroupBox()
+        Me.Button1 = New System.Windows.Forms.Button()
+        Me.Label2 = New System.Windows.Forms.Label()
+        Me.tbkdpeminjaman = New System.Windows.Forms.TextBox()
         Me.btnanggota = New System.Windows.Forms.Button()
         Me.Label9 = New System.Windows.Forms.Label()
         Me.Label8 = New System.Windows.Forms.Label()
@@ -39,6 +42,7 @@ Partial Class FormPengembalian
         Me.tbalamat = New System.Windows.Forms.TextBox()
         Me.tbnama = New System.Windows.Forms.TextBox()
         Me.GroupBox2 = New System.Windows.Forms.GroupBox()
+        Me.tbjmlhari = New System.Windows.Forms.TextBox()
         Me.btninput = New System.Windows.Forms.Button()
         Me.Label1 = New System.Windows.Forms.Label()
         Me.btnbuku = New System.Windows.Forms.Button()
@@ -48,9 +52,7 @@ Partial Class FormPengembalian
         Me.btnsimpan = New System.Windows.Forms.Button()
         Me.btnbatal = New System.Windows.Forms.Button()
         Me.btnhpsitem = New System.Windows.Forms.Button()
-        Me.Button1 = New System.Windows.Forms.Button()
-        Me.Label2 = New System.Windows.Forms.Label()
-        Me.tbkdpeminjaman = New System.Windows.Forms.TextBox()
+        Me.Button2 = New System.Windows.Forms.Button()
         Me.GroupBox1.SuspendLayout()
         Me.GroupBox2.SuspendLayout()
         CType(Me.dgv, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -90,6 +92,32 @@ Partial Class FormPengembalian
         Me.GroupBox1.TabIndex = 2
         Me.GroupBox1.TabStop = False
         Me.GroupBox1.Text = "Transaksi Peminjaman"
+        '
+        'Button1
+        '
+        Me.Button1.Location = New System.Drawing.Point(276, 71)
+        Me.Button1.Name = "Button1"
+        Me.Button1.Size = New System.Drawing.Size(32, 20)
+        Me.Button1.TabIndex = 20
+        Me.Button1.Text = "..."
+        Me.Button1.UseVisualStyleBackColor = True
+        '
+        'Label2
+        '
+        Me.Label2.AutoSize = True
+        Me.Label2.Location = New System.Drawing.Point(6, 74)
+        Me.Label2.Name = "Label2"
+        Me.Label2.Size = New System.Drawing.Size(83, 13)
+        Me.Label2.TabIndex = 21
+        Me.Label2.Text = "Kd. Peminjaman"
+        '
+        'tbkdpeminjaman
+        '
+        Me.tbkdpeminjaman.Enabled = False
+        Me.tbkdpeminjaman.Location = New System.Drawing.Point(108, 71)
+        Me.tbkdpeminjaman.Name = "tbkdpeminjaman"
+        Me.tbkdpeminjaman.Size = New System.Drawing.Size(162, 20)
+        Me.tbkdpeminjaman.TabIndex = 19
         '
         'btnanggota
         '
@@ -212,6 +240,7 @@ Partial Class FormPengembalian
         '
         'GroupBox2
         '
+        Me.GroupBox2.Controls.Add(Me.tbjmlhari)
         Me.GroupBox2.Controls.Add(Me.btninput)
         Me.GroupBox2.Controls.Add(Me.Label1)
         Me.GroupBox2.Controls.Add(Me.btnbuku)
@@ -224,9 +253,17 @@ Partial Class FormPengembalian
         Me.GroupBox2.TabStop = False
         Me.GroupBox2.Text = "Input Buku"
         '
+        'tbjmlhari
+        '
+        Me.tbjmlhari.Enabled = False
+        Me.tbjmlhari.Location = New System.Drawing.Point(632, 19)
+        Me.tbjmlhari.Name = "tbjmlhari"
+        Me.tbjmlhari.Size = New System.Drawing.Size(141, 20)
+        Me.tbjmlhari.TabIndex = 22
+        '
         'btninput
         '
-        Me.btninput.Location = New System.Drawing.Point(779, 16)
+        Me.btninput.Location = New System.Drawing.Point(779, 18)
         Me.btninput.Name = "btninput"
         Me.btninput.Size = New System.Drawing.Size(75, 23)
         Me.btninput.TabIndex = 11
@@ -255,7 +292,7 @@ Partial Class FormPengembalian
         '
         Me.tbjudulbuku.Location = New System.Drawing.Point(214, 19)
         Me.tbjudulbuku.Name = "tbjudulbuku"
-        Me.tbjudulbuku.Size = New System.Drawing.Size(559, 20)
+        Me.tbjudulbuku.Size = New System.Drawing.Size(412, 20)
         Me.tbjudulbuku.TabIndex = 7
         '
         'tbkdbuku
@@ -300,37 +337,21 @@ Partial Class FormPengembalian
         Me.btnhpsitem.Text = "Hapus Item"
         Me.btnhpsitem.UseVisualStyleBackColor = True
         '
-        'Button1
+        'Button2
         '
-        Me.Button1.Location = New System.Drawing.Point(276, 71)
-        Me.Button1.Name = "Button1"
-        Me.Button1.Size = New System.Drawing.Size(32, 20)
-        Me.Button1.TabIndex = 20
-        Me.Button1.Text = "..."
-        Me.Button1.UseVisualStyleBackColor = True
-        '
-        'Label2
-        '
-        Me.Label2.AutoSize = True
-        Me.Label2.Location = New System.Drawing.Point(6, 74)
-        Me.Label2.Name = "Label2"
-        Me.Label2.Size = New System.Drawing.Size(83, 13)
-        Me.Label2.TabIndex = 21
-        Me.Label2.Text = "Kd. Peminjaman"
-        '
-        'tbkdpeminjaman
-        '
-        Me.tbkdpeminjaman.Enabled = False
-        Me.tbkdpeminjaman.Location = New System.Drawing.Point(108, 71)
-        Me.tbkdpeminjaman.Name = "tbkdpeminjaman"
-        Me.tbkdpeminjaman.Size = New System.Drawing.Size(162, 20)
-        Me.tbkdpeminjaman.TabIndex = 19
+        Me.Button2.Location = New System.Drawing.Point(109, 402)
+        Me.Button2.Name = "Button2"
+        Me.Button2.Size = New System.Drawing.Size(75, 23)
+        Me.Button2.TabIndex = 22
+        Me.Button2.Text = "Button2"
+        Me.Button2.UseVisualStyleBackColor = True
         '
         'FormPengembalian
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(884, 437)
+        Me.Controls.Add(Me.Button2)
         Me.Controls.Add(Me.btnhpsitem)
         Me.Controls.Add(Me.btnsimpan)
         Me.Controls.Add(Me.btnbatal)
@@ -376,4 +397,6 @@ Partial Class FormPengembalian
     Friend WithEvents Button1 As System.Windows.Forms.Button
     Friend WithEvents Label2 As System.Windows.Forms.Label
     Friend WithEvents tbkdpeminjaman As System.Windows.Forms.TextBox
+    Friend WithEvents tbjmlhari As System.Windows.Forms.TextBox
+    Friend WithEvents Button2 As System.Windows.Forms.Button
 End Class

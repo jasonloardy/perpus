@@ -184,14 +184,6 @@ Public Class FormAnggota
         reset()
     End Sub
 
-    Private Sub dgv_CellEnter(sender As Object, e As DataGridViewCellEventArgs) Handles dgv.CellEnter
-        reset()
-        GridToTextBox()
-        btntambah.Enabled = False
-        btnedit.Enabled = True
-        btnhapus.Enabled = True
-    End Sub
-
     Private Sub dgv_CellDoubleClick(sender As Object, e As DataGridViewCellEventArgs) Handles dgv.CellDoubleClick
         If from = "peminjaman" Then
             With FormPeminjaman
@@ -203,5 +195,13 @@ Public Class FormAnggota
             End With
             Me.Close()
         End If
+    End Sub
+
+    Private Sub dgv_CellClick(sender As Object, e As DataGridViewCellEventArgs) Handles dgv.CellClick
+        reset()
+        GridToTextBox()
+        btntambah.Enabled = False
+        btnedit.Enabled = True
+        btnhapus.Enabled = True
     End Sub
 End Class

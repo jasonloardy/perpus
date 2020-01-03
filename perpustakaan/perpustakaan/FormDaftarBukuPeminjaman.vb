@@ -6,12 +6,14 @@ Public Class FormDaftarBukuPeminjaman
         isigrid()
     End Sub
     Sub isigrid()
-        Dim query As String = "SELECT tb.kd_buku,tb.judul,tpd.tgl_kembali,IF(tpd.status=0,'Belum Kembali','Sudah Kembali') AS status," _
-                            & "TIMESTAMPDIFF(DAY, tpd.tgl_kembali, CURDATE()) AS jmlhari " _
+        Dim query As String = "SELECT tb.kd_buku,tb.judul,tpd.tgl_kembali, " _
+                            & "CONCAT(IF(TIMESTAMPDIFF(DAY, tpd.tgl_kembali, CURDATE())>0,'Telat ','Sisa '), " _
+                            & "ABS(TIMESTAMPDIFF(DAY, tpd.tgl_kembali, CURDATE())), ' hari') AS jmlhari, " _
+                            & "IF(tpd.status=0,'Belum Kembali','Sudah Kembali') AS status " _
                             & "FROM tb_peminjaman_detail tpd " _
                             & "JOIN tb_buku tb ON tpd.kd_buku = tb.kd_buku " _
-                            & "LEFT JOIN tb_keranjang tk ON tpd.kd_buku=tk.kd_buku " _
-                            & "WHERE tpd.kd_peminjaman = '" & FormPengembalian.tbkdpeminjaman.Text & "' and tpd.status='0' AND tk.kd_buku IS NULL"
+                            & "LEFT JOIN tb_keranjang_pengembalian tk ON tpd.kd_buku=tk.kd_buku " _
+                            & "WHERE tpd.kd_peminjaman = '" & FormPengembalian.tbkdpeminjaman.Text & "' AND tk.kd_buku IS NULL"
         Dim da As New MySqlDataAdapter(query, konek)
         Dim ds As New DataSet()
         If da.Fill(ds) Then
@@ -28,9 +30,10 @@ Public Class FormDaftarBukuPeminjaman
     Private Sub dgv_CellDoubleClick(sender As Object, e As DataGridViewCellEventArgs) Handles dgv.CellDoubleClick
         With dgv
             Dim baris As Integer = .CurrentRow.Index
-            If .Item(3, baris).Value = "Belum Kembali" Then
+            If .Item(4, baris).Value = "Belum Kembali" Then
                 FormPengembalian.tbkdbuku.Text = .Item(0, baris).Value
                 FormPengembalian.tbjudulbuku.Text = .Item(1, baris).Value
+                FormPengembalian.tbjmlhari.Text = .Item(3, baris).Value
                 Me.Close()
             End If
         End With
