@@ -23,7 +23,7 @@ Partial Class FormBuku
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
         Me.dgv = New System.Windows.Forms.DataGridView()
-        Me.tbcari = New System.Windows.Forms.TextBox()
+        Me.tbpencarian = New System.Windows.Forms.TextBox()
         Me.GroupBox1 = New System.Windows.Forms.GroupBox()
         Me.Button2 = New System.Windows.Forms.Button()
         Me.Button1 = New System.Windows.Forms.Button()
@@ -50,19 +50,19 @@ Partial Class FormBuku
         '
         Me.dgv.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
         Me.dgv.Location = New System.Drawing.Point(9, 32)
-        Me.dgv.Margin = New System.Windows.Forms.Padding(2, 2, 2, 2)
+        Me.dgv.Margin = New System.Windows.Forms.Padding(2)
         Me.dgv.Name = "dgv"
         Me.dgv.RowTemplate.Height = 24
         Me.dgv.Size = New System.Drawing.Size(564, 326)
         Me.dgv.TabIndex = 0
         '
-        'tbcari
+        'tbpencarian
         '
-        Me.tbcari.Location = New System.Drawing.Point(74, 10)
-        Me.tbcari.Margin = New System.Windows.Forms.Padding(2, 2, 2, 2)
-        Me.tbcari.Name = "tbcari"
-        Me.tbcari.Size = New System.Drawing.Size(500, 20)
-        Me.tbcari.TabIndex = 1
+        Me.tbpencarian.Location = New System.Drawing.Point(74, 10)
+        Me.tbpencarian.Margin = New System.Windows.Forms.Padding(2)
+        Me.tbpencarian.Name = "tbpencarian"
+        Me.tbpencarian.Size = New System.Drawing.Size(500, 20)
+        Me.tbpencarian.TabIndex = 1
         '
         'GroupBox1
         '
@@ -79,9 +79,9 @@ Partial Class FormBuku
         Me.GroupBox1.Controls.Add(Me.Label2)
         Me.GroupBox1.Controls.Add(Me.tbkdbuku)
         Me.GroupBox1.Location = New System.Drawing.Point(578, 10)
-        Me.GroupBox1.Margin = New System.Windows.Forms.Padding(2, 2, 2, 2)
+        Me.GroupBox1.Margin = New System.Windows.Forms.Padding(2)
         Me.GroupBox1.Name = "GroupBox1"
-        Me.GroupBox1.Padding = New System.Windows.Forms.Padding(2, 2, 2, 2)
+        Me.GroupBox1.Padding = New System.Windows.Forms.Padding(2)
         Me.GroupBox1.Size = New System.Drawing.Size(300, 146)
         Me.GroupBox1.TabIndex = 2
         Me.GroupBox1.TabStop = False
@@ -90,7 +90,7 @@ Partial Class FormBuku
         'Button2
         '
         Me.Button2.Location = New System.Drawing.Point(239, 93)
-        Me.Button2.Margin = New System.Windows.Forms.Padding(2, 2, 2, 2)
+        Me.Button2.Margin = New System.Windows.Forms.Padding(2)
         Me.Button2.Name = "Button2"
         Me.Button2.Size = New System.Drawing.Size(56, 19)
         Me.Button2.TabIndex = 16
@@ -100,7 +100,7 @@ Partial Class FormBuku
         'Button1
         '
         Me.Button1.Location = New System.Drawing.Point(239, 67)
-        Me.Button1.Margin = New System.Windows.Forms.Padding(2, 2, 2, 2)
+        Me.Button1.Margin = New System.Windows.Forms.Padding(2)
         Me.Button1.Name = "Button1"
         Me.Button1.Size = New System.Drawing.Size(56, 19)
         Me.Button1.TabIndex = 15
@@ -110,7 +110,7 @@ Partial Class FormBuku
         'tbpenerbit
         '
         Me.tbpenerbit.Location = New System.Drawing.Point(93, 93)
-        Me.tbpenerbit.Margin = New System.Windows.Forms.Padding(2, 2, 2, 2)
+        Me.tbpenerbit.Margin = New System.Windows.Forms.Padding(2)
         Me.tbpenerbit.Name = "tbpenerbit"
         Me.tbpenerbit.Size = New System.Drawing.Size(143, 20)
         Me.tbpenerbit.TabIndex = 14
@@ -118,7 +118,7 @@ Partial Class FormBuku
         'tbpengarang
         '
         Me.tbpengarang.Location = New System.Drawing.Point(93, 68)
-        Me.tbpengarang.Margin = New System.Windows.Forms.Padding(2, 2, 2, 2)
+        Me.tbpengarang.Margin = New System.Windows.Forms.Padding(2)
         Me.tbpengarang.Name = "tbpengarang"
         Me.tbpengarang.Size = New System.Drawing.Size(143, 20)
         Me.tbpengarang.TabIndex = 13
@@ -126,7 +126,7 @@ Partial Class FormBuku
         'tbtahun
         '
         Me.tbtahun.Location = New System.Drawing.Point(93, 117)
-        Me.tbtahun.Margin = New System.Windows.Forms.Padding(2, 2, 2, 2)
+        Me.tbtahun.Margin = New System.Windows.Forms.Padding(2)
         Me.tbtahun.Name = "tbtahun"
         Me.tbtahun.Size = New System.Drawing.Size(76, 20)
         Me.tbtahun.TabIndex = 12
@@ -164,7 +164,7 @@ Partial Class FormBuku
         'tbjudulbuku
         '
         Me.tbjudulbuku.Location = New System.Drawing.Point(93, 46)
-        Me.tbjudulbuku.Margin = New System.Windows.Forms.Padding(2, 2, 2, 2)
+        Me.tbjudulbuku.Margin = New System.Windows.Forms.Padding(2)
         Me.tbjudulbuku.Name = "tbjudulbuku"
         Me.tbjudulbuku.Size = New System.Drawing.Size(204, 20)
         Me.tbjudulbuku.TabIndex = 6
@@ -193,7 +193,7 @@ Partial Class FormBuku
         '
         Me.tbkdbuku.Enabled = False
         Me.tbkdbuku.Location = New System.Drawing.Point(93, 23)
-        Me.tbkdbuku.Margin = New System.Windows.Forms.Padding(2, 2, 2, 2)
+        Me.tbkdbuku.Margin = New System.Windows.Forms.Padding(2)
         Me.tbkdbuku.Name = "tbkdbuku"
         Me.tbkdbuku.Size = New System.Drawing.Size(143, 20)
         Me.tbkdbuku.TabIndex = 3
@@ -211,7 +211,7 @@ Partial Class FormBuku
         'btnbatal
         '
         Me.btnbatal.Location = New System.Drawing.Point(821, 161)
-        Me.btnbatal.Margin = New System.Windows.Forms.Padding(2, 2, 2, 2)
+        Me.btnbatal.Margin = New System.Windows.Forms.Padding(2)
         Me.btnbatal.Name = "btnbatal"
         Me.btnbatal.Size = New System.Drawing.Size(56, 19)
         Me.btnbatal.TabIndex = 7
@@ -221,7 +221,7 @@ Partial Class FormBuku
         'btnhapus
         '
         Me.btnhapus.Location = New System.Drawing.Point(760, 161)
-        Me.btnhapus.Margin = New System.Windows.Forms.Padding(2, 2, 2, 2)
+        Me.btnhapus.Margin = New System.Windows.Forms.Padding(2)
         Me.btnhapus.Name = "btnhapus"
         Me.btnhapus.Size = New System.Drawing.Size(56, 19)
         Me.btnhapus.TabIndex = 6
@@ -231,7 +231,7 @@ Partial Class FormBuku
         'btnedit
         '
         Me.btnedit.Location = New System.Drawing.Point(700, 161)
-        Me.btnedit.Margin = New System.Windows.Forms.Padding(2, 2, 2, 2)
+        Me.btnedit.Margin = New System.Windows.Forms.Padding(2)
         Me.btnedit.Name = "btnedit"
         Me.btnedit.Size = New System.Drawing.Size(56, 19)
         Me.btnedit.TabIndex = 5
@@ -241,7 +241,7 @@ Partial Class FormBuku
         'btntambah
         '
         Me.btntambah.Location = New System.Drawing.Point(639, 161)
-        Me.btntambah.Margin = New System.Windows.Forms.Padding(2, 2, 2, 2)
+        Me.btntambah.Margin = New System.Windows.Forms.Padding(2)
         Me.btntambah.Name = "btntambah"
         Me.btntambah.Size = New System.Drawing.Size(56, 19)
         Me.btntambah.TabIndex = 4
@@ -259,9 +259,9 @@ Partial Class FormBuku
         Me.Controls.Add(Me.btntambah)
         Me.Controls.Add(Me.Label1)
         Me.Controls.Add(Me.GroupBox1)
-        Me.Controls.Add(Me.tbcari)
+        Me.Controls.Add(Me.tbpencarian)
         Me.Controls.Add(Me.dgv)
-        Me.Margin = New System.Windows.Forms.Padding(2, 2, 2, 2)
+        Me.Margin = New System.Windows.Forms.Padding(2)
         Me.Name = "FormBuku"
         Me.Text = "FormBuku"
         CType(Me.dgv, System.ComponentModel.ISupportInitialize).EndInit()
@@ -272,7 +272,7 @@ Partial Class FormBuku
 
     End Sub
     Friend WithEvents dgv As System.Windows.Forms.DataGridView
-    Friend WithEvents tbcari As System.Windows.Forms.TextBox
+    Friend WithEvents tbpencarian As System.Windows.Forms.TextBox
     Friend WithEvents GroupBox1 As System.Windows.Forms.GroupBox
     Friend WithEvents Button2 As System.Windows.Forms.Button
     Friend WithEvents Button1 As System.Windows.Forms.Button

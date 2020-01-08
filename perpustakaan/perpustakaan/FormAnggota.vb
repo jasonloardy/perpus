@@ -5,17 +5,19 @@ Public Class FormAnggota
     Public id_data As String
     Public from As String
     Private Sub Formanggota_Load(sender As Object, e As EventArgs) Handles MyBase.Load
-        isigrid()
+        isigrid("")
         reset()
     End Sub
-    Sub isigrid()
+    Sub isigrid(ByVal cari As String)
         Dim query As String = "SELECT kd_anggota,nama,alamat,no_telp, " _
                             & "CASE " _
                             & "WHEN role = 'D' then 'Dosen' " _
                             & "WHEN role = 'M' then 'Mahasiswa' " _
                             & "WHEN role = 'P' then 'Pustakawan' " _
                             & "END " _
-                            & "FROM tb_anggota"
+                            & "FROM tb_anggota " _
+                            & "WHERE (kd_anggota LIKE '%" & cari & "%' " _
+                            & "OR nama LIKE '%" & cari & "%')"
         Dim da As New MySqlDataAdapter(query, konek)
         Dim ds As New DataSet()
         If da.Fill(ds) Then
@@ -118,14 +120,14 @@ Public Class FormAnggota
         Dim q As String = "INSERT INTO tb_anggota VALUES (@kd_anggota, @nama, @alamat, @no_telp, @role)"
         Queryanggota(q, tbkdanggota.Text, tbnama.Text.ToUpper, tbalamat.Text, tbnotelp.Text, Microsoft.VisualBasic.Left(cbrole.Text, 1))
         MsgBox("Berhasil tambah data!", MsgBoxStyle.Information, "Informasi")
-        isigrid()
+        isigrid("")
     End Sub
 
     Sub queryedit()
         Dim q As String = "UPDATE tb_anggota SET nama=@nama,alamat=@alamat,no_telp=@no_telp,role=@role WHERE kd_anggota = @kd_anggota"
         Queryanggota(q, tbkdanggota.Text, tbnama.Text.ToUpper, tbalamat.Text, tbnotelp.Text, Microsoft.VisualBasic.Left(cbrole.Text, 1))
         MsgBox("Berhasil edit data!", MsgBoxStyle.Information, "Informasi")
-        isigrid()
+        isigrid("")
     End Sub
 
     Sub queryhapus()
@@ -140,7 +142,7 @@ Public Class FormAnggota
             dr.Close()
             Dim query As String = "DELETE FROM tb_anggota WHERE kd_anggota = @kd_anggota"
             Queryanggota(query, id_data, "", "", "", "")
-            isigrid()
+            isigrid("")
             MsgBox("Berhasil hapus data!", MsgBoxStyle.Information, "Informasi")
         End If
     End Sub
@@ -203,5 +205,9 @@ Public Class FormAnggota
         btntambah.Enabled = False
         btnedit.Enabled = True
         btnhapus.Enabled = True
+    End Sub
+
+    Private Sub tbcari_TextChanged(sender As Object, e As EventArgs) Handles tbpencarian.TextChanged
+        isigrid(tbpencarian.Text)
     End Sub
 End Class

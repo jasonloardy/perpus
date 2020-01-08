@@ -6,14 +6,14 @@ Public Class FormDaftarBukuPeminjaman
         isigrid()
     End Sub
     Sub isigrid()
-        Dim query As String = "SELECT tb.kd_buku,tb.judul,tpd.tgl_kembali, " _
-                            & "CONCAT(IF(TIMESTAMPDIFF(DAY, tpd.tgl_kembali, CURDATE())>0,'Telat ','Sisa '), " _
-                            & "ABS(TIMESTAMPDIFF(DAY, tpd.tgl_kembali, CURDATE())), ' hari') AS jmlhari, " _
-                            & "IF(tpd.status=0,'Belum Kembali','Sudah Kembali') AS status " _
+        Dim query As String = "SELECT tb.kd_buku,tb.judul,tpd.harus_kembali, " _
+                            & "CONCAT(IF(TIMESTAMPDIFF(DAY, tpd.harus_kembali, CURDATE())>0,'Telat ','Sisa '), " _
+                            & "ABS(TIMESTAMPDIFF(DAY, tpd.harus_kembali, CURDATE())), ' hari') AS jmlhari, " _
+                            & "IF(tpd.tgl_kembali IS NULL,'Belum Kembali','Sudah Kembali') AS status " _
                             & "FROM tb_peminjaman_detail tpd " _
                             & "JOIN tb_buku tb ON tpd.kd_buku = tb.kd_buku " _
-                            & "LEFT JOIN tb_keranjang_pengembalian tk ON tpd.kd_buku=tk.kd_buku " _
-                            & "WHERE tpd.kd_peminjaman = '" & FormPengembalian.tbkdpeminjaman.Text & "' AND tk.kd_buku IS NULL"
+                            & "LEFT JOIN tb_keranjang tk ON tpd.kd_buku=tk.kd_buku " _
+                            & "WHERE tpd.kd_peminjaman = '" & FormPengembalian.tbkdpeminjaman.Text & "' AND tpd.tgl_kembali IS NULL AND tk.kd_buku IS NULL"
         Dim da As New MySqlDataAdapter(query, konek)
         Dim ds As New DataSet()
         If da.Fill(ds) Then
@@ -33,7 +33,7 @@ Public Class FormDaftarBukuPeminjaman
             If .Item(4, baris).Value = "Belum Kembali" Then
                 FormPengembalian.tbkdbuku.Text = .Item(0, baris).Value
                 FormPengembalian.tbjudulbuku.Text = .Item(1, baris).Value
-                FormPengembalian.tbjmlhari.Text = .Item(3, baris).Value
+                FormPengembalian.tbjmlhari.Text = .Item(2, baris).Value
                 Me.Close()
             End If
         End With

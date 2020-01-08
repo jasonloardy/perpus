@@ -5,13 +5,15 @@ Public Class FormBuku
     Public id_data As String
     Public from As String
     Private Sub FormBuku_Load(sender As Object, e As EventArgs) Handles MyBase.Load
-        isigrid()
+        isigrid("")
         reset()
     End Sub
-    Sub isigrid()
+    Sub isigrid(ByVal cari As String)
         Dim query As String = "SELECT tb.kd_buku,tb.judul,png.nama_pengarang,pbt.nama_penerbit,tb.tahun_terbit FROM tb_buku tb " _
                             & "JOIN tb_pengarang png ON tb.kd_pengarang = png.kd_pengarang " _
-                            & "JOIN tb_penerbit pbt on tb.kd_penerbit = pbt.kd_penerbit"
+                            & "JOIN tb_penerbit pbt on tb.kd_penerbit = pbt.kd_penerbit " _
+                            & "WHERE (tb.kd_buku LIKE '%" & cari & "%' " _
+                            & "OR tb.judul LIKE '%" & cari & "%')"
         Dim da As New MySqlDataAdapter(query, konek)
         Dim ds As New DataSet()
         If da.Fill(ds) Then
@@ -120,14 +122,14 @@ Public Class FormBuku
         Dim q As String = "INSERT INTO tb_buku VALUES (@kd_buku, @judul, @kd_pengarang, @kd_penerbit, @tahun_terbit)"
         Querybuku(q, tbkdbuku.Text, tbjudulbuku.Text.ToUpper, Microsoft.VisualBasic.Right(tbpengarang.Text, 8), Microsoft.VisualBasic.Right(tbpenerbit.Text, 8), tbtahun.Text)
         MsgBox("Berhasil tambah data!", MsgBoxStyle.Information, "Informasi")
-        isigrid()
+        isigrid("")
     End Sub
 
     Sub queryedit()
         Dim q As String = "UPDATE tb_buku SET judul=@judul,kd_pengarang=@kd_pengarang,kd_penerbit=@kd_penerbit,tahun_terbit=@tahun_terbit WHERE kd_buku = @kd_buku"
         Querybuku(q, id_data, tbjudulbuku.Text.ToUpper, Microsoft.VisualBasic.Right(tbpengarang.Text, 8), Microsoft.VisualBasic.Right(tbpenerbit.Text, 8), tbtahun.Text)
         MsgBox("Berhasil edit data!", MsgBoxStyle.Information, "Informasi")
-        isigrid()
+        isigrid("")
     End Sub
 
     Sub queryhapus()
@@ -142,7 +144,7 @@ Public Class FormBuku
             dr.Close()
             Dim query As String = "DELETE FROM tb_buku WHERE kd_buku = @kd_buku"
             Querybuku(query, id_data, "", "", "", "")
-            isigrid()
+            isigrid("")
             MsgBox("Berhasil hapus data!", MsgBoxStyle.Information, "Informasi")
         End If
     End Sub
@@ -212,5 +214,9 @@ Public Class FormBuku
             End With
             Me.Close()
         End If
+    End Sub
+
+    Private Sub tbpencarian_TextChanged(sender As Object, e As EventArgs) Handles tbpencarian.TextChanged
+        isigrid(tbpencarian.Text)
     End Sub
 End Class

@@ -27,15 +27,12 @@ Partial Class FormPengembalian
         Me.Button1 = New System.Windows.Forms.Button()
         Me.Label2 = New System.Windows.Forms.Label()
         Me.tbkdpeminjaman = New System.Windows.Forms.TextBox()
-        Me.btnanggota = New System.Windows.Forms.Button()
         Me.Label9 = New System.Windows.Forms.Label()
         Me.Label8 = New System.Windows.Forms.Label()
         Me.Label7 = New System.Windows.Forms.Label()
         Me.Label6 = New System.Windows.Forms.Label()
         Me.Label5 = New System.Windows.Forms.Label()
         Me.Label4 = New System.Windows.Forms.Label()
-        Me.Label3 = New System.Windows.Forms.Label()
-        Me.tbkdpengembalian = New System.Windows.Forms.TextBox()
         Me.dtpkembali = New System.Windows.Forms.DateTimePicker()
         Me.tbrole = New System.Windows.Forms.TextBox()
         Me.tbnotelp = New System.Windows.Forms.TextBox()
@@ -52,7 +49,6 @@ Partial Class FormPengembalian
         Me.btnsimpan = New System.Windows.Forms.Button()
         Me.btnbatal = New System.Windows.Forms.Button()
         Me.btnhpsitem = New System.Windows.Forms.Button()
-        Me.Button2 = New System.Windows.Forms.Button()
         Me.GroupBox1.SuspendLayout()
         Me.GroupBox2.SuspendLayout()
         CType(Me.dgv, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -71,15 +67,12 @@ Partial Class FormPengembalian
         Me.GroupBox1.Controls.Add(Me.Button1)
         Me.GroupBox1.Controls.Add(Me.Label2)
         Me.GroupBox1.Controls.Add(Me.tbkdpeminjaman)
-        Me.GroupBox1.Controls.Add(Me.btnanggota)
         Me.GroupBox1.Controls.Add(Me.Label9)
         Me.GroupBox1.Controls.Add(Me.Label8)
         Me.GroupBox1.Controls.Add(Me.Label7)
         Me.GroupBox1.Controls.Add(Me.Label6)
         Me.GroupBox1.Controls.Add(Me.Label5)
         Me.GroupBox1.Controls.Add(Me.Label4)
-        Me.GroupBox1.Controls.Add(Me.Label3)
-        Me.GroupBox1.Controls.Add(Me.tbkdpengembalian)
         Me.GroupBox1.Controls.Add(Me.dtpkembali)
         Me.GroupBox1.Controls.Add(Me.tbrole)
         Me.GroupBox1.Controls.Add(Me.tbnotelp)
@@ -118,16 +111,6 @@ Partial Class FormPengembalian
         Me.tbkdpeminjaman.Name = "tbkdpeminjaman"
         Me.tbkdpeminjaman.Size = New System.Drawing.Size(162, 20)
         Me.tbkdpeminjaman.TabIndex = 19
-        '
-        'btnanggota
-        '
-        Me.btnanggota.Enabled = False
-        Me.btnanggota.Location = New System.Drawing.Point(594, 19)
-        Me.btnanggota.Name = "btnanggota"
-        Me.btnanggota.Size = New System.Drawing.Size(32, 20)
-        Me.btnanggota.TabIndex = 12
-        Me.btnanggota.Text = "..."
-        Me.btnanggota.UseVisualStyleBackColor = True
         '
         'Label9
         '
@@ -182,22 +165,6 @@ Partial Class FormPengembalian
         Me.Label4.Size = New System.Drawing.Size(95, 13)
         Me.Label4.TabIndex = 13
         Me.Label4.Text = "Tgl. Pengembalian"
-        '
-        'Label3
-        '
-        Me.Label3.AutoSize = True
-        Me.Label3.Location = New System.Drawing.Point(6, 22)
-        Me.Label3.Name = "Label3"
-        Me.Label3.Size = New System.Drawing.Size(93, 13)
-        Me.Label3.TabIndex = 12
-        Me.Label3.Text = "Kd. Pengembalian"
-        '
-        'tbkdpengembalian
-        '
-        Me.tbkdpengembalian.Location = New System.Drawing.Point(108, 19)
-        Me.tbkdpengembalian.Name = "tbkdpengembalian"
-        Me.tbkdpengembalian.Size = New System.Drawing.Size(200, 20)
-        Me.tbkdpengembalian.TabIndex = 10
         '
         'dtpkembali
         '
@@ -337,21 +304,11 @@ Partial Class FormPengembalian
         Me.btnhpsitem.Text = "Hapus Item"
         Me.btnhpsitem.UseVisualStyleBackColor = True
         '
-        'Button2
-        '
-        Me.Button2.Location = New System.Drawing.Point(109, 402)
-        Me.Button2.Name = "Button2"
-        Me.Button2.Size = New System.Drawing.Size(75, 23)
-        Me.Button2.TabIndex = 22
-        Me.Button2.Text = "Button2"
-        Me.Button2.UseVisualStyleBackColor = True
-        '
         'FormPengembalian
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(884, 437)
-        Me.Controls.Add(Me.Button2)
         Me.Controls.Add(Me.btnhpsitem)
         Me.Controls.Add(Me.btnsimpan)
         Me.Controls.Add(Me.btnbatal)
@@ -370,15 +327,12 @@ Partial Class FormPengembalian
     End Sub
     Friend WithEvents tbkdanggota As System.Windows.Forms.TextBox
     Friend WithEvents GroupBox1 As System.Windows.Forms.GroupBox
-    Friend WithEvents btnanggota As System.Windows.Forms.Button
     Friend WithEvents Label9 As System.Windows.Forms.Label
     Friend WithEvents Label8 As System.Windows.Forms.Label
     Friend WithEvents Label7 As System.Windows.Forms.Label
     Friend WithEvents Label6 As System.Windows.Forms.Label
     Friend WithEvents Label5 As System.Windows.Forms.Label
     Friend WithEvents Label4 As System.Windows.Forms.Label
-    Friend WithEvents Label3 As System.Windows.Forms.Label
-    Friend WithEvents tbkdpengembalian As System.Windows.Forms.TextBox
     Friend WithEvents dtpkembali As System.Windows.Forms.DateTimePicker
     Friend WithEvents tbrole As System.Windows.Forms.TextBox
     Friend WithEvents tbnotelp As System.Windows.Forms.TextBox
@@ -398,5 +352,4 @@ Partial Class FormPengembalian
     Friend WithEvents Label2 As System.Windows.Forms.Label
     Friend WithEvents tbkdpeminjaman As System.Windows.Forms.TextBox
     Friend WithEvents tbjmlhari As System.Windows.Forms.TextBox
-    Friend WithEvents Button2 As System.Windows.Forms.Button
 End Class

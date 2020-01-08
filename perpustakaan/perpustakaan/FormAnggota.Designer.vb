@@ -23,7 +23,7 @@ Partial Class FormAnggota
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
         Me.dgv = New System.Windows.Forms.DataGridView()
-        Me.tbcari = New System.Windows.Forms.TextBox()
+        Me.tbpencarian = New System.Windows.Forms.TextBox()
         Me.GroupBox1 = New System.Windows.Forms.GroupBox()
         Me.cbrole = New System.Windows.Forms.ComboBox()
         Me.tbnotelp = New System.Windows.Forms.TextBox()
@@ -54,13 +54,13 @@ Partial Class FormAnggota
         Me.dgv.Size = New System.Drawing.Size(564, 326)
         Me.dgv.TabIndex = 0
         '
-        'tbcari
+        'tbpencarian
         '
-        Me.tbcari.Location = New System.Drawing.Point(74, 10)
-        Me.tbcari.Margin = New System.Windows.Forms.Padding(2)
-        Me.tbcari.Name = "tbcari"
-        Me.tbcari.Size = New System.Drawing.Size(500, 20)
-        Me.tbcari.TabIndex = 1
+        Me.tbpencarian.Location = New System.Drawing.Point(74, 10)
+        Me.tbpencarian.Margin = New System.Windows.Forms.Padding(2)
+        Me.tbpencarian.Name = "tbpencarian"
+        Me.tbpencarian.Size = New System.Drawing.Size(500, 20)
+        Me.tbpencarian.TabIndex = 1
         '
         'GroupBox1
         '
@@ -237,7 +237,7 @@ Partial Class FormAnggota
         Me.Controls.Add(Me.btntambah)
         Me.Controls.Add(Me.Label1)
         Me.Controls.Add(Me.GroupBox1)
-        Me.Controls.Add(Me.tbcari)
+        Me.Controls.Add(Me.tbpencarian)
         Me.Controls.Add(Me.dgv)
         Me.Margin = New System.Windows.Forms.Padding(2)
         Me.Name = "FormAnggota"
@@ -250,7 +250,7 @@ Partial Class FormAnggota
 
     End Sub
     Friend WithEvents dgv As System.Windows.Forms.DataGridView
-    Friend WithEvents tbcari As System.Windows.Forms.TextBox
+    Friend WithEvents tbpencarian As System.Windows.Forms.TextBox
     Friend WithEvents GroupBox1 As System.Windows.Forms.GroupBox
     Friend WithEvents tbnotelp As System.Windows.Forms.TextBox
     Friend WithEvents tbalamat As System.Windows.Forms.TextBox

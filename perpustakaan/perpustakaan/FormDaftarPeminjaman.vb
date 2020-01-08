@@ -15,7 +15,7 @@ Public Class FormDaftarPeminjaman
                             & "FROM tb_peminjaman tp " _
                             & "JOIN tb_anggota ta ON tp.kd_anggota=ta.kd_anggota " _
                             & "JOIN tb_peminjaman_detail tpd ON tp.kd_peminjaman=tpd.kd_peminjaman " _
-                            & "WHERE tpd.status='0'" _
+                            & "WHERE tpd.tgl_kembali IS NULL " _
                             & "GROUP by tp.kd_peminjaman"
         Dim da As New MySqlDataAdapter(query, konek)
         Dim ds As New DataSet()
